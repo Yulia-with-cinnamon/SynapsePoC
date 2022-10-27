@@ -1,0 +1,9 @@
+{
+	"name": "adf-AzureDataIntergrationPipelines",
+	"location": "westeurope",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "b0ae8b06-d9a2-4e57-a8f7-a0df60601232",
+		"tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+	}
+}
