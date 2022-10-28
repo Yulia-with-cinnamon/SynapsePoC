@@ -1,0 +1,48 @@
+{
+	"name": "Execute Copy each AW Entity",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('Entities')",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Execute Copy each AW Entity",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "CopyAWEntity",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"Entity": "@item()"
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"Entities": {
+				"type": "array",
+				"defaultValue": [
+					"Product",
+					"ProductSubCategory",
+					"ProductCategory"
+				]
+			}
+		},
+		"annotations": []
+	}
+}
