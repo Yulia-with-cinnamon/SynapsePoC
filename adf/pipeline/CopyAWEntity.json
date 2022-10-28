@@ -55,8 +55,7 @@
 		],
 		"parameters": {
 			"Entity": {
-				"type": "string",
-				"defaultValue": "BusinessEntity"
+				"type": "string"
 			}
 		},
 		"annotations": []
