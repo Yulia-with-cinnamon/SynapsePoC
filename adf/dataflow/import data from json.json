@@ -1,0 +1,58 @@
+{
+	"name": "import data from json",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Json1",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "flatten1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          {@odata.context} as string,",
+				"          {@odata.count} as integer,",
+				"          value as (id as string, isReadOnly as boolean, isOnDedicatedCapacity as boolean, capacityId as string, capacityMigrationStatus as string, description as string, type as string, state as string, {hasWorkspaceLevelSettings } as boolean, name as string, users as (emailAddress as string, groupUserAccessRight as string, displayName as string, identifier as string, principalType as string)[], reports as (id as string, reportType as string, name as string, datasetId as string, users as string[], subscriptions as string[])[], dashboards as (id as string, displayName as string, isReadOnly as boolean, users as string[], subscriptions as string[])[], datasets as (id as string, name as string, expressions as string[], addRowsAPIEnabled as boolean, configuredBy as string, isRefreshable as boolean, isEffectiveIdentityRequired as boolean, isEffectiveIdentityRolesRequired as boolean, targetStorageMode as string, createdDate as string, contentProviderType as string, upstreamDatasets as string[], users as string[], isInPlaceSharingEnabled as boolean)[], dataflows as string[], workbooks as string[])[]",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'documentPerLine') ~> source1",
+				"source1 foldDown(unroll(value.datasets),",
+				"     mapColumn(",
+				"          count = value.datasets.configuredBy,",
+				"          contentprovider = value.datasets.contentProviderType,",
+				"          createdDate = value.datasets.configuredBy,",
+				"          id = value.datasets.id",
+				"     ),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> flatten1",
+				"flatten1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
+			]
+		}
+	}
+}

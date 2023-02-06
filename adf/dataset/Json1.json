@@ -1,0 +1,195 @@
+{
+	"name": "Json1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "powerbi_workspaces_20230116 v2.json",
+				"fileSystem": "pbimonitoring"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"@odata.context": {
+					"type": "string"
+				},
+				"@odata.count": {
+					"type": "integer"
+				},
+				"value": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"id": {
+								"type": "string"
+							},
+							"isReadOnly": {
+								"type": "boolean"
+							},
+							"isOnDedicatedCapacity": {
+								"type": "boolean"
+							},
+							"capacityId": {
+								"type": "string"
+							},
+							"capacityMigrationStatus": {
+								"type": "string"
+							},
+							"description": {
+								"type": "string"
+							},
+							"type": {
+								"type": "string"
+							},
+							"state": {
+								"type": "string"
+							},
+							"hasWorkspaceLevelSettings ": {
+								"type": "boolean"
+							},
+							"name": {
+								"type": "string"
+							},
+							"users": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"emailAddress": {
+											"type": "string"
+										},
+										"groupUserAccessRight": {
+											"type": "string"
+										},
+										"displayName": {
+											"type": "string"
+										},
+										"identifier": {
+											"type": "string"
+										},
+										"principalType": {
+											"type": "string"
+										}
+									}
+								}
+							},
+							"reports": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"id": {
+											"type": "string"
+										},
+										"reportType": {
+											"type": "string"
+										},
+										"name": {
+											"type": "string"
+										},
+										"datasetId": {
+											"type": "string"
+										},
+										"users": {
+											"type": "array"
+										},
+										"subscriptions": {
+											"type": "array"
+										}
+									}
+								}
+							},
+							"dashboards": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"id": {
+											"type": "string"
+										},
+										"displayName": {
+											"type": "string"
+										},
+										"isReadOnly": {
+											"type": "boolean"
+										},
+										"users": {
+											"type": "array"
+										},
+										"subscriptions": {
+											"type": "array"
+										}
+									}
+								}
+							},
+							"datasets": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"id": {
+											"type": "string"
+										},
+										"name": {
+											"type": "string"
+										},
+										"expressions": {
+											"type": "array"
+										},
+										"addRowsAPIEnabled": {
+											"type": "boolean"
+										},
+										"configuredBy": {
+											"type": "string"
+										},
+										"isRefreshable": {
+											"type": "boolean"
+										},
+										"isEffectiveIdentityRequired": {
+											"type": "boolean"
+										},
+										"isEffectiveIdentityRolesRequired": {
+											"type": "boolean"
+										},
+										"targetStorageMode": {
+											"type": "string"
+										},
+										"createdDate": {
+											"type": "string"
+										},
+										"contentProviderType": {
+											"type": "string"
+										},
+										"upstreamDatasets": {
+											"type": "array"
+										},
+										"users": {
+											"type": "array"
+										},
+										"isInPlaceSharingEnabled": {
+											"type": "boolean"
+										}
+									}
+								}
+							},
+							"dataflows": {
+								"type": "array"
+							},
+							"workbooks": {
+								"type": "array"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
